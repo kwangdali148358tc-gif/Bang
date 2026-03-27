@@ -1,9 +1,16 @@
-<x-layout><br><br><br><br>
-    <h1>Homepage</h1>
+<x-layout><br><br><br><br>    
+    <h1>{{ $greeting }}</h1>
+    <p>Name: {{ $name }}</p>
+    <p>Age: {{ $age }}</p>
 
-    <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-    </nav>
+    @if (count($tasks))
+        <h2>Tasks</h2>
+        <ul>
+            @foreach ($tasks as $task)
+                <li>{{ $task }}</li>
+            @endforeach
+        </ul>
+    @endif
+
+    
 </x-layout>
