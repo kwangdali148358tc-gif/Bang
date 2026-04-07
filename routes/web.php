@@ -82,3 +82,65 @@ Route::patch('/posts/{post}', function (Post $post) {
     return redirect('/posts' . '/' . $post->id);
 }
 );
+
+// User CRUD Routes
+use App\Models\User;
+
+// Index
+Route::get('/users', function () {
+    $users = User::all();
+
+    return view('users.index', [
+        'users' => $users,
+    ]);
+});
+
+// Create form
+Route::view('/users/create', 'users.create');
+
+// Store
+Route::post('/users', function () {
+    request()->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users',
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'age' => 'nullable|integer|min:0',
+        'contact_number' => 'nullable|string|max:15',
+    ]);
+
+    User::create(request()->all());
+
+    return redirect('/users');
+});
+
+// Edit form
+Route::get('/users/{user}/edit', function (User $user) {
+    return view('users.edit', [
+        'user' => $user,
+    ]);
+});
+
+// Update
+Route::patch('/users/{user}', function (User $user) {
+    request()->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users,email,' . $user->id,
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'age' => 'nullable|integer|min:0',
+        'contact_number' => 'nullable|string|max:15',
+    ]);
+
+    $user->update(request()->all());
+
+    return redirect('/users');
+});
+
+// Delete
+Route::delete('/users/{user}', function (User $user) {
+    $user->delete();
+
+    return redirect('/users');
+});
+

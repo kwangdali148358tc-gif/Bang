@@ -25,8 +25,13 @@
           </div>
         </div>
         <div class="mt-10 flex items-center justify-end gap-x-6">
-    <button type="submit" class="rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save</button>
-  </div>
+            <a href="/users/create" class="rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 text-center block">Register User</a>
+        </div>
+
+        <div class="mt-6 text-center">
+            <a href="/users" class="text-indigo-400 hover:text-indigo-300 font-semibold">View All Users →</a>
+        </div>
+
 
     
 </x-layout>
