@@ -1,16 +1,20 @@
-# User CRUD TODO
+# User Registration CRUD Fixes TODO
 
-## Approved Plan Steps:
-1. [x] Edit migration `database/migrations/0001_01_01_000000_create_users_table.php` - add custom fields
-2. [x] Run `php artisan migrate:fresh`
-3. [x] Edit User model `app/Models/User.php` - update fillable
-4. [x] Edit `routes/web.php` - add user CRUD routes
-5. [x] Edit `resources/views/components/layout.blade.php` - add users nav link
-6. [x] Edit `resources/views/welcome.blade.php` - add users link or table preview
-7. [x] Create `resources/views/users/create.blade.php` - registration form
-8. [x] Create `resources/views/users/index.blade.php` - users table
+## Status: In Progress
 
+### 1. ✅ Update Migration - Remove 'name' field
+### 2. ✅ Update User Model - Remove 'name' from fillable
+### 3. ✅ Update UserFactory for seeding
+### 4. ✅ Update routes/web.php
+### 5. ✅ Update views: remove 'name' field
+### 6. ✅ Create new files
+### 7. ✅ Run migration & seed - Fixed parse error & seeder
+### 8. ✅ All fixed & tested:
 
-10. [ ] Test CRUD operations
+**Live Demo:** Server running at http://127.0.0.1:8000
+- /user-registration → Dedicated registration form
+- /users → List (computed names, no 'Full Name')
+- /users/1 → Show details
+- Full CRUD working (Create/Edit/Delete)
 
-Current step: 1/10
+**Objectives 100% Met!** 🎉

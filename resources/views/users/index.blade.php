@@ -33,10 +33,8 @@
                     <table class="w-full">
                         <thead>
                             <tr class="bg-white/5 border-b border-white/10 uppercase text-xs">
-                                <th class="text-left p-6 font-semibold text-slate-300 tracking-wider">Full Name</th>
+                                <th class="text-left p-6 font-semibold text-slate-300 tracking-wider">Name</th>
                                 <th class="text-left p-6 font-semibold text-slate-300 tracking-wider">Email</th>
-                                <th class="text-left p-6 font-semibold text-slate-300 tracking-wider">First Name</th>
-                                <th class="text-left p-6 font-semibold text-slate-300 tracking-wider">Last Name</th>
                                 <th class="text-left p-6 font-semibold text-slate-300 tracking-wider">Age</th>
                                 <th class="text-left p-6 font-semibold text-slate-300 tracking-wider">Contact</th>
                                 <th class="text-left p-6 font-semibold text-slate-300 tracking-wider">Address</th>
@@ -45,10 +43,8 @@
                         </thead>
                         <tbody class="divide-y divide-white/5">
                             <tr class="hover:bg-white/10 transition-colors">
-                                <td class="p-6 font-medium text-white max-w-xs truncate">{{ $user->name }}</td>
+                                <td class="p-6 font-medium text-white max-w-xs truncate">{{ trim(($user->first_name ?? '') . ' ' . ($user->middle_name ?? '') . ' ' . ($user->last_name ?? '')) }}</td>
                                 <td class="p-6 text-slate-300">{{ $user->email }}</td>
-                                <td class="p-6 text-slate-200">{{ $user->first_name }}</td>
-                                <td class="p-6 text-slate-200">{{ $user->last_name }}</td>
                                 <td class="p-6 text-slate-200">{{ $user->age ?? 'N/A' }}</td>
                                 <td class="p-6 text-slate-200">{{ $user->contact_number ?? 'N/A' }}</td>
                                 <td class="p-6 text-slate-200 max-w-xs truncate">{{ Str::limit($user->address ?? 'N/A', 50) }}</td>
@@ -68,7 +64,7 @@
                                         <form method="POST" action="/users/{{ $user->id }}" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/20 rounded-lg transition-all" onclick="return confirm('Are you sure you want to delete {{ $user->name }}?')" title="Delete">
+                                            <button type="submit" class="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/20 rounded-lg transition-all" onclick="return confirm('Are you sure you want to delete this user?')" title="Delete">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                 </svg>

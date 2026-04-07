@@ -24,7 +24,22 @@
     <div class="max-w-2xl mx-auto">
         <div class="glass-card rounded-3xl shadow-2xl p-8">
             <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-white mb-2">Register New User</h1>
+<h1 class="text-3xl font-bold text-white mb-2">Add New User</h1>
+@error('email')
+<div class="bg-red-500/20 border border-red-500/50 text-red-300 p-4 rounded-xl mb-6">
+    <strong>Validation Error:</strong> {{ $message }}
+</div>
+@enderror
+@error('first_name')
+<div class="bg-red-500/20 border border-red-500/50 text-red-300 p-4 rounded-xl mb-6">
+    <strong>Validation Error:</strong> {{ $message }}
+</div>
+@enderror
+@error('last_name')
+<div class="bg-red-500/20 border border-red-500/50 text-red-300 p-4 rounded-xl mb-6">
+    <strong>Validation Error:</strong> {{ $message }}
+</div>
+@enderror
                 <p class="text-slate-400">Fill in the details below</p>
             </div>
 
@@ -32,11 +47,6 @@
                 @csrf
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="name" class="block text-sm font-semibold text-slate-300 mb-2">Full Name</label>
-                        <input id="name" name="name" type="text" required class="w-full rounded-xl bg-slate-950/50 border border-slate-700/50 px-4 py-3 text-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:outline-none transition-all" />
-                    </div>
-
                     <div>
                         <label for="email" class="block text-sm font-semibold text-slate-300 mb-2">Email</label>
                         <input id="email" name="email" type="email" required class="w-full rounded-xl bg-slate-950/50 border border-slate-700/50 px-4 py-3 text-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:outline-none transition-all" />

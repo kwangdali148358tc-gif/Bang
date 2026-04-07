@@ -29,6 +29,16 @@
                 </svg>
             </a>
             <h1 class="text-3xl font-bold text-white">Edit User</h1>
+            @if ($errors->any())
+                <div class="bg-red-500/20 border border-red-500/50 text-red-300 p-6 rounded-xl mb-8">
+                    <strong>❌ Update failed. Please fix:</strong>
+                    <ul class="mt-2 list-disc list-inside space-y-1">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
 
         <div class="glass-card rounded-3xl shadow-2xl p-8">
@@ -37,11 +47,6 @@
                 @method('PATCH')
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="name" class="block text-sm font-semibold text-slate-300 mb-2">Full Name</label>
-                        <input id="name" name="name" value="{{ $user->name }}" type="text" required class="w-full rounded-xl bg-slate-950/50 border border-slate-700/50 px-4 py-3 text-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:outline-none transition-all" />
-                    </div>
-
                     <div>
                         <label for="email" class="block text-sm font-semibold text-slate-300 mb-2">Email</label>
                         <input id="email" name="email" value="{{ $user->email }}" type="email" required class="w-full rounded-xl bg-slate-950/50 border border-slate-700/50 px-4 py-3 text-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:outline-none transition-all" />
@@ -94,3 +99,4 @@
     </div>
 </div>
 
+</x-layout>

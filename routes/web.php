@@ -5,16 +5,14 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Ideas;
 use App\Models\Post;
 
-Route::view('/', 'welcome', [
-    'greeting' => 'Hello, World!',
-    'name' => 'John Doe',
-    'age' => 30,
-    'tasks' => [
-        'Learn Laravel',
-        'Build a project',
-        'Deploy to production',
-    ],
-]);
+Route::get('/', function () {
+    $userCount = \App\Models\User::count();
+    $postCount = \App\Models\Post::count();
+    $ideaCount = \App\Models\Ideas::count();
+    $recentUsers = \App\Models\User::latest()->take(5)->get();
+
+    return view('welcome', compact('userCount', 'postCount', 'ideaCount', 'recentUsers'));
+});
 
 Route::view('/about', 'about');
 Route::view('/contact', 'contact');
@@ -86,6 +84,10 @@ Route::patch('/posts/{post}', function (Post $post) {
 // User CRUD Routes
 use App\Models\User;
 
+Route::get('/user-registration', function () {
+    return view('user_registration');
+});
+
 // Index
 Route::get('/users', function () {
     $users = User::all();
@@ -100,8 +102,7 @@ Route::view('/users/create', 'users.create');
 
 // Store
 Route::post('/users', function () {
-    request()->validate([
-        'name' => 'required',
+request()->validate([
         'email' => 'required|email|unique:users',
         'first_name' => 'required',
         'last_name' => 'required',
@@ -109,7 +110,9 @@ Route::post('/users', function () {
         'contact_number' => 'nullable|string|max:15',
     ]);
 
-    User::create(request()->all());
+$data = request()->only(['email', 'first_name', 'last_name', 'middle_name', 'nickname', 'age', 'address', 'contact_number']);
+$data['password'] = bcrypt('password'); // Default password for registration
+User::create($data);
 
     return redirect('/users');
 });
@@ -123,8 +126,7 @@ Route::get('/users/{user}/edit', function (User $user) {
 
 // Update
 Route::patch('/users/{user}', function (User $user) {
-    request()->validate([
-        'name' => 'required',
+request()->validate([
         'email' => 'required|email|unique:users,email,' . $user->id,
         'first_name' => 'required',
         'last_name' => 'required',
@@ -132,9 +134,14 @@ Route::patch('/users/{user}', function (User $user) {
         'contact_number' => 'nullable|string|max:15',
     ]);
 
-    $user->update(request()->all());
+$user->update(request()->only(['email', 'first_name', 'last_name', 'middle_name', 'nickname', 'age', 'address', 'contact_number'])); // Explicit fields, no password change on update
 
     return redirect('/users');
+});
+
+// Show
+Route::get('/users/{user}', function (User $user) {
+    return view('users.show', ['user' => $user]);
 });
 
 // Delete
