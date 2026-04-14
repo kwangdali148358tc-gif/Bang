@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -58,6 +59,9 @@
                 <a href="/formtest" class="nav-link">Form Test</a>
                 <a href="/posts" class="nav-link">Posts</a>
                 <a href="/users" class="nav-link">Users</a>
+                <a href="{{ url('/books') }}" class="nav-link">Books</a>
+                <a href="{{ url('/borrowings') }}" class="nav-link">Borrowings</a>
+                <a href="{{ url('/acquisitions') }}" class="nav-link">Acquisitions</a>
             </div>
         </div>
     </nav>

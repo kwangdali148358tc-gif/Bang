@@ -1,20 +1,73 @@
-# User Registration CRUD Fixes TODO
+# Borrowing and Acquisition Pages for Library System
 
-## Status: In Progress
+## Steps:
 
-### 1. ✅ Update Migration - Remove 'name' field
-### 2. ✅ Update User Model - Remove 'name' from fillable
-### 3. ✅ Update UserFactory for seeding
-### 4. ✅ Update routes/web.php
-### 5. ✅ Update views: remove 'name' field
-### 6. ✅ Create new files
-### 7. ✅ Run migration & seed - Fixed parse error & seeder
-### 8. ✅ All fixed & tested:
+### 1. Generate base files [✅ COMPLETE]
+   - [x] php artisan make:model Borrowing -m
+   - [x] php artisan make:model Acquisition -m
+   - [x] php artisan make:controller BorrowingController --resource --model=Borrowing
+   - [x] php artisan make:controller AcquisitionController --resource --model=Acquisition
 
-**Live Demo:** Server running at http://127.0.0.1:8000
-- /user-registration → Dedicated registration form
-- /users → List (computed names, no 'Full Name')
-- /users/1 → Show details
-- Full CRUD working (Create/Edit/Delete)
+### 2. Create/Edit migrations
+   - [ ] Edit create_borrowings_table.php (fields)
+   - [ ] Edit create_acquisitions_table.php (fields)
+   - [ ] php artisan migrate
 
-**Objectives 100% Met!** 🎉
+### 3. Update models
+   - [ ] Edit app/Models/Borrowing.php (relationships)
+   - [ ] Edit app/Models/Acquisition.php (relationships)
+   - [ ] Edit app/Models/Book.php (add hasMany)
+   - [ ] Edit app/Models/User.php (add hasMany Borrowings if needed)
+
+### 4. Update controllers
+   - [ ] Edit BorrowingController.php (validation, logic e.g. check availability)
+   - [ ] Edit AcquisitionController.php
+
+### 5. Add routes
+   - [ ] Edit routes/web.php (add resources)
+
+### 6. Create views
+   - [ ] borrowings/index.blade.php, create, edit, show
+   - [ ] acquisitions/index.blade.php, create, edit, show
+
+### 7. Fix factories/seeder
+   - [ ] Update database/factories/BorrowingFactory.php
+   - [ ] Update database/factories/AcquisitionFactory.php
+   - [ ] Update database/seeders/DatabaseSeeder.php
+   - [ ] php artisan db:seed
+
+### 8. Test
+   - [ ] Run server, test CRUD for both.
+
+
+### 2. Create/Edit migrations
+   - [ ] Edit create_borrowings_table.php (fields)
+   - [ ] Edit create_acquisitions_table.php (fields)
+   - [ ] php artisan migrate
+
+### 3. Update models
+   - [ ] Edit app/Models/Borrowing.php (relationships)
+   - [ ] Edit app/Models/Acquisition.php (relationships)
+   - [ ] Edit app/Models/Book.php (add hasMany)
+   - [ ] Edit app/Models/User.php (add hasMany Borrowings if needed)
+
+### 4. Update controllers
+   - [ ] Edit BorrowingController.php (validation, logic e.g. check availability)
+   - [ ] Edit AcquisitionController.php
+
+### 5. Add routes
+   - [ ] Edit routes/web.php (add resources)
+
+### 6. Create views
+   - [ ] borrowings/index.blade.php, create, edit, show
+   - [ ] acquisitions/index.blade.php, create, edit, show
+
+### 7. Fix factories/seeder
+   - [ ] Update database/factories/BorrowingFactory.php
+   - [ ] Update database/factories/AcquisitionFactory.php
+   - [ ] Update database/seeders/DatabaseSeeder.php
+   - [ ] php artisan db:seed
+
+### 8. Test
+   - [ ] Run server, test CRUD for both.
+

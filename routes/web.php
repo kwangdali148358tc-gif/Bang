@@ -151,3 +151,16 @@ Route::delete('/users/{user}', function (User $user) {
     return redirect('/users');
 });
 
+// Book CRUD Routes
+use App\Http\Controllers\BookController;
+
+Route::resource('books', BookController::class);
+
+// Borrowing CRUD Routes
+use App\Http\Controllers\BorrowingController;
+Route::resource('borrowings', BorrowingController::class);
+
+// Acquisition CRUD Routes
+use App\Http\Controllers\AcquisitionController;
+Route::resource('acquisitions', AcquisitionController::class);
+
